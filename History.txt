@@ -1,0 +1,7 @@
+== 1.0.0 / 2012-03-02
+
+* Initial revision
+* Support for stream bytes parsing
+* Support for packet parsing
+* Support for global config, electricity config and electricity data beacons
+* Full rspec coverage

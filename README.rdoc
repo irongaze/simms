@@ -1,0 +1,60 @@
+= GEM: simms
+
+Written by Rob Morris @ Irongaze Consulting LLC (http://irongaze.com)
+
+Based on sample PHP code and documentation provided by Simms Energy (http://simmsenergy.com)
+
+Funding for development provided by Sustainable Industrial Solutions LLC (http://sustainableis.com)
+
+== DESCRIPTION
+
+A set of classes to enable reading posted data from Simms Energy monitoring products (http://simmsenergy.com)
+
+== SYNOPSIS
+
+This gem facilitates interpreting incoming monitoring data and converting it into Ruby objects for easier
+manipulation.  It handles parsing the byte-stream of mesh data Simms devices provide, including
+conversion of hex byte-codes into Ruby native data types such as integers, bools and floats.
+
+To use:
+
+    # Require the library (not needed if using Rails/bundler)
+    >> require 'simms'
+    
+    # Parse a packet to extract the contained beacon, passing in
+    # the timestamp and data posted to your server from the Simms device
+    >> beacon = Simms::Packet.parse(params['DateTime'], params['MeshData'])
+
+    # Which device sent this beacon?
+    >> beacon.uuid
+    => '0A-28-00-48-27-88'
+
+    # See what kind of beacon we have
+    >> beacon.group
+    => :electric
+    >> beacon.type
+    => :data
+    >> beacon.data?
+    => true
+    
+    # Extract some data from the beacon
+    >> beacon.phase
+    => 0
+    >> beacon.accumulated_real_energy
+    => 15290
+    >> beacon.present_real_power
+    => 472.08821
+    
+== REQUIREMENTS
+
+None, though you'll need rspec to build and test the gem
+
+== INSTALL
+
+To install, simply run:
+
+    sudo gem install simms
+    
+RVM users can skip the sudo:
+  
+    gem install simms
